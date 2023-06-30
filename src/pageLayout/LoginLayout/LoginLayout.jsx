@@ -1,44 +1,65 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/router";
+import clsx from "clsx";
 import styles from "./LoginLayout.module.scss";
 import { AppInput } from "@/components/ui/AppInput";
 import truck from "@/assets/img/cargo.jpg";
 import Logo from "@/assets/img/logo.png";
-import clsx from "clsx";
+
+import { loginSchema } from "@/validations";
 export const LoginLayout = () => {
+  const router = useRouter();
   const [form, setForm] = useState({ login: "", password: "" });
   const onInputChange = ({ target }) => {
     setForm((prev) => ({ ...prev, [target.name]: target.value }));
   };
-  const onFormSubmit = (e) => {
-    e.preventDefault();
-    console.log(form);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+    mode: "onChange",
+  });
+  const onFormSubmit = (data) => {
+    console.log(data);
+  };
+  const goToRegister = () => {
+    router.push("/register");
   };
   return (
     <div className={styles.container}>
       <div className={styles.formWrapper}>
-        <form onSubmit={onFormSubmit}>
+        <form onSubmit={handleSubmit(onFormSubmit)}>
           <div className={styles.logo}>
             <Image src={Logo} alt="logo" objectFit="contain" layout="fill" />
           </div>
-          <AppInput
-            className={styles.input}
-            value={form.login}
-            label="E-mail / Логин"
-            name="login"
-            onChange={onInputChange}
-          />
-          <AppInput
-            className={styles.input}
-            value={form.password}
-            label="Пароль"
-            name="password"
-            onChange={onInputChange}
-          />
+          <div className={styles.inputWrapper}>
+            <AppInput
+              className={styles.input}
+              label="E-mail / Логин"
+              {...register("login")}
+              error={errors.login?.message}
+            />
+            <AppInput
+              className={styles.input}
+              label="Пароль"
+              type="password"
+              {...register("password")}
+              error={errors.password?.message}
+            />
+          </div>
           <div className={styles.buttonsWrapper}>
             <button
               className={clsx("button", styles.registerButton)}
               type="button"
+              onClick={goToRegister}
             >
               Регистрация
             </button>

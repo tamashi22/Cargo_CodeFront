@@ -14,12 +14,16 @@
   width: 55%;
   justify-content: center;
 }
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .input {
   width: 200px;
   width: 486px;
   padding: 20px;
   border-radius: 16px;
-  margin-bottom: 20px;
 }
 .buttonsWrapper {
   display: flex;

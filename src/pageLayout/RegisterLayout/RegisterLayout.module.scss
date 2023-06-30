@@ -1,0 +1,26 @@
+.container {
+  margin-top: 40px;
+  display: flex;
+  // flex-direction: column;
+  justify-content: center;
+}
+.title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-top: 40px;
+}
+.formWrapper {
+  max-width: 984px;
+  width: 100%;
+}
+.inputWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.input {
+  width: 450px;
+  padding: 20px;
+  border-radius: 16px;
+}
