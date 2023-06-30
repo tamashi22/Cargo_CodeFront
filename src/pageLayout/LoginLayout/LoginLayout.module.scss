@@ -1,3 +1,46 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  width: 200px;
+  position: relative;
+  height: 100px;
+  margin-bottom: 40px;
+}
+.formWrapper {
+  display: flex;
+  width: 55%;
+  justify-content: center;
+}
 .input {
   width: 200px;
+  width: 486px;
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+.buttonsWrapper {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  margin-top: 30px;
+  .registerButton {
+    width: 220px;
+    border-radius: 16px;
+    background: var(--100, #f2f4f7);
+  }
+
+  .buttonSubmit {
+    width: 220px;
+    border-radius: 16px;
+    background: #2464ad;
+    color: white;
+  }
+}
+.imageWraper {
+  width: 45%;
+  height: 100vh;
+  position: relative;
 }

@@ -1,7 +1,40 @@
 .container {
   display: flex;
   flex-direction: column;
+  padding-bottom: 4px;
 }
 .label {
-  font-weight: 700;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #6d7885;
+  margin-bottom: 4px;
+}
+.input {
+  border: 1px solid var(--200, #e4e7ec);
+  background: var(--50, #f9fafb);
+  &:hover {
+    border: 1px solid #6d7885;
+    .errorInput {
+      border: 1px solid red;
+    }
+  }
+
+  &:focus {
+    border: 1px solid #6d7885;
+    outline: none !important;
+  }
+}
+.errorInput {
+  border: 1px solid red;
+}
+.label {
+  font-weight: 500;
+  font-size: 14px;
+}
+.error {
+  color: red;
+  position: absolute;
 }
