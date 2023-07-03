@@ -12,10 +12,6 @@ import Logo from "@/assets/img/logo.png";
 import { loginSchema } from "@/validations";
 export const LoginLayout = () => {
   const router = useRouter();
-  const [form, setForm] = useState({ login: "", password: "" });
-  const onInputChange = ({ target }) => {
-    setForm((prev) => ({ ...prev, [target.name]: target.value }));
-  };
   const {
     register,
     handleSubmit,

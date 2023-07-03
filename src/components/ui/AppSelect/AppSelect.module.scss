@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4px;
+}
+.label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #6d7885;
+}
+.select {
+  background: url(../../../assets/svg/arrowDown.svg) no-repeat center right 10px;
+  background-color: var(--50, #f9fafb);
+  border: 1px solid #e4e7ec;
+  border-radius: 16px;
+  appearance: none;
+  &:hover {
+    border: 1px solid #6d7885;
+    .error {
+      border: 1px solid red;
+    }
+  }
+  &:focus {
+    border: 1px solid #6d7885;
+    outline: none !important;
+  }
+}
+.error {
+  border: 1px solid red;
+}
+.errorMessage {
+  color: red;
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+}
+.select > option {
+  background: #f2f4f7;
+  border-radius: 16px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  height: 64px;
+}

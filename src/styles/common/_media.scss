@@ -1,0 +1,13 @@
+$MAX_MOBILE_SIZE: 768px;
+$MAX_TABLET_SIZE: 960px;
+
+.mob {
+  @media (min-width: $MAX_TABLET_SIZE) {
+    display: none;
+  }
+}
+.desc {
+  @media (max-width: $MAX_TABLET_SIZE) {
+    display: none;
+  }
+}

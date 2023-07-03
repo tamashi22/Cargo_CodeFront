@@ -14,6 +14,7 @@
 .input {
   border: 1px solid var(--200, #e4e7ec);
   background: var(--50, #f9fafb);
+
   &:hover {
     border: 1px solid #6d7885;
     .errorInput {

@@ -1,0 +1,26 @@
+.formWrapper {
+  margin: 20px 0;
+}
+.inputWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.input {
+  width: 450px;
+  padding: 20px;
+  border-radius: 16px;
+}
+.submitButton {
+  width: 300px;
+  border: 0;
+  height: 56px;
+  font-size: 14px;
+  border-radius: 20px;
+  color: white;
+  background: #2464ad;
+  float: right;
+  margin-bottom: 40px;
+  cursor: pointer;
+}
