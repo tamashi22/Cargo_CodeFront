@@ -5,6 +5,7 @@ import { AppHeader } from "@/components/AppHeader";
 import CarrierForm from "./components/CarrierForm";
 import ShipperForm from "./components/ShipperForm";
 import CompanyForm from "./components/CompanyForm";
+import EmployeeForm from "./components/EmployeeForm";
 import styles from "./RegisterLayout.module.scss";
 
 export const RegisterLayout = () => {
@@ -21,16 +22,18 @@ export const RegisterLayout = () => {
 
       case "COMPANY":
         return <CompanyForm />;
+      case "EMPLOYEE":
+        return <EmployeeForm />;
     }
   }, [userType]);
 
   return (
     <>
       <AppHeader />
-      <h3 className={styles.title}>Регистрация</h3>
+      <h3 className={styles.title}>Create New Account</h3>
       <div className={styles.container}>
         <div className={styles.formWrapper}>
-          <p className={styles.label}>Выберите роль:</p>
+          <p className={styles.label}>Choose role:</p>
           <div className={styles.choiceWrapper}>
             <p
               onClick={() => setUserType("CARRIER")}
@@ -39,7 +42,7 @@ export const RegisterLayout = () => {
                 userType == "CARRIER" && styles.active
               )}
             >
-              Перевозчик
+              Carrier
             </p>
             <p
               onClick={() => setUserType("SHIPPER")}
@@ -48,7 +51,7 @@ export const RegisterLayout = () => {
                 userType == "SHIPPER" && styles.active
               )}
             >
-              Грузоотправитель
+              Shipper
             </p>
             <p
               onClick={() => setUserType("COMPANY")}
@@ -57,7 +60,16 @@ export const RegisterLayout = () => {
                 userType == "COMPANY" && styles.active
               )}
             >
-              Логистическая компания
+              Logistic company
+            </p>
+            <p
+              onClick={() => setUserType("EMPLOYEE")}
+              className={clsx(
+                styles.userType,
+                userType == "EMPLOYEE" && styles.active
+              )}
+            >
+              Company employee
             </p>
           </div>
           {renderForm}

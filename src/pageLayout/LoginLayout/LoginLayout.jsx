@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import styles from "./LoginLayout.module.scss";
+
 import { AppInput } from "@/components/ui/AppInput";
 import truck from "@/assets/img/cargo.jpg";
 import Logo from "@/assets/img/logo.png";
-
 import { loginSchema } from "@/validations";
+import styles from "./LoginLayout.module.scss";
 export const LoginLayout = () => {
   const router = useRouter();
   const {
@@ -39,13 +39,13 @@ export const LoginLayout = () => {
           <div className={styles.inputWrapper}>
             <AppInput
               className={styles.input}
-              label="E-mail / Логин"
+              label="E-mail / Phone"
               {...register("login")}
               error={errors.login?.message}
             />
             <AppInput
               className={styles.input}
-              label="Пароль"
+              label="Password"
               type="password"
               {...register("password")}
               error={errors.password?.message}
@@ -57,10 +57,10 @@ export const LoginLayout = () => {
               type="button"
               onClick={goToRegister}
             >
-              Регистрация
+              SignUp
             </button>
             <button className={clsx("button", styles.buttonSubmit)}>
-              Войти
+              SignIn
             </button>
           </div>
         </form>

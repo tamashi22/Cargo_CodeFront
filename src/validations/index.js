@@ -1,10 +1,7 @@
 import * as Yup from "yup";
 export const loginSchema = Yup.object().shape({
-  login: Yup.string().required("Это поле обязательное"),
-  password: Yup.string()
-    .required("Это поле обязательное")
-    .min(6, "Пароль должен быть больше 6 символов")
-    .max(40, "Пароль не может превышать 40 символов"),
+  login: Yup.string().required("This field is required"),
+  password: Yup.string().required("This field is required").min(6).max(40),
 });
 export const registerCarrierSchema = Yup.object().shape({
   email: Yup.string()

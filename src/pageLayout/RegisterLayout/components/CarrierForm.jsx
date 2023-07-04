@@ -29,12 +29,12 @@ function CarrierForm() {
       <div className={styles.inputWrapper}>
         <AppInput
           className={styles.input}
-          label="Имя"
+          label="First Name"
           {...register("firstName")}
         />
         <AppInput
           className={styles.input}
-          label="Фамилия"
+          label="LastName"
           {...register("lastName")}
         />
       </div>
@@ -46,7 +46,7 @@ function CarrierForm() {
         />
         <AppInput
           className={styles.input}
-          label="Телефон"
+          label="Phone number"
           {...register("phone")}
         />
       </div>
@@ -54,7 +54,7 @@ function CarrierForm() {
         <AppSelect
           {...register("company")}
           className={styles.input}
-          label=" Выберите Компанию(при наличии)"
+          label="Company Name (do not choose if individually)"
         >
           <option disabled selected />
 
@@ -64,27 +64,27 @@ function CarrierForm() {
         </AppSelect>
         <AppInput
           className={styles.input}
-          label="Адрес"
+          label="Address"
           {...register("physical_address")}
         />
       </div>
       <div className={styles.inputWrapper}>
         <AppInput
           className={styles.input}
-          label="MC/DOT номер"
+          label="MC/DOT numer"
           {...register("mc_dot_number")}
           type="number"
         />
         <AppInput
           className={styles.input}
-          label="Пароль"
+          label="Password"
           {...register("password")}
         />
       </div>
       <div className={styles.inputWrapper}>
-        <AppInput className={styles.input} label="Подтвертите Пароль" />
+        <AppInput className={styles.input} label="Confirm Password" />
       </div>
-      <button className={styles.submitButton}>Зарегестрироваться</button>
+      <button className={styles.submitButton}>Create Account</button>
     </form>
   );
 }

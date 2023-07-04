@@ -15,8 +15,8 @@ export const AppHeader = () => {
             </div>
           </Link>
           <div className={styles.linksWrapper}>
-            <Link href={"/login"}>Вход</Link>
-            <Link href={"/register"}>Регистарация</Link>
+            <Link href={"/login"}>Sign In</Link>
+            <Link href={"/register"}>Sign Up</Link>
           </div>
         </div>
       </div>

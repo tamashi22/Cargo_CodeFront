@@ -28,12 +28,12 @@ function ShipperForm() {
       <div className={styles.inputWrapper}>
         <AppInput
           className={styles.input}
-          label="Имя"
+          label="First Name"
           {...register("firstName")}
         />
         <AppInput
           className={styles.input}
-          label="Фамилия"
+          label="Last Name"
           {...register("lastName")}
         />
       </div>
@@ -45,7 +45,7 @@ function ShipperForm() {
         />
         <AppInput
           className={styles.input}
-          label="Телефон"
+          label="Phone number"
           {...register("phone")}
           type="number"
         />
@@ -54,23 +54,23 @@ function ShipperForm() {
       <div className={styles.inputWrapper}>
         <AppInput
           className={styles.input}
-          label="Адрес"
+          label="Address"
           {...register("billing_address")}
         />
         <AppInput
           className={styles.input}
-          label="Пароль"
+          label="Password"
           {...register("password")}
         />
       </div>
       <div className={styles.inputWrapper}>
         <AppInput
           className={styles.input}
-          label="Подтвертите Пароль"
+          label="Confirm password"
           {...register("confirm_password")}
         />
       </div>
-      <button className={styles.submitButton}>Зарегестрироваться</button>
+      <button className={styles.submitButton}>Create Account</button>
     </form>
   );
 }
