@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 import { AppInput } from "@/components/ui/AppInput";
-import { createShipper } from "@/redux/slices/auth.slice";
+import { AppSelect } from "@/components/ui/AppSelect";
+import { createOperator } from "@/redux/slices/auth.slice";
 import styles from "./RegistrationForms.module.scss";
 
-function ShipperForm() {
-  const dispatch = useDispatch();
-  const router = useRouter();
+const OperatorForm = () => {
+  const dispach = useDispatch();
   const IsSucceed = useSelector((state) => state.auth.IsSignUp);
-  console.log(IsSucceed);
   const {
     register,
     handleSubmit,
@@ -27,15 +25,14 @@ function ShipperForm() {
 
   const onFormSubmit = (data) => {
     delete data.confirm_password;
-    dispatch(createShipper(data));
+    dispach(createOperator(data));
   };
-  useEffect(() => {
+  React.useEffect(() => {
+    setValue("role", "OPERATOR");
+  }, []);
+  React.useEffect(() => {
     IsSucceed && router.push("/");
   }, [IsSucceed]);
-
-  useEffect(() => {
-    setValue("role", "SHIPPER");
-  }, []);
   return (
     <form className={styles.formWrapper} onSubmit={handleSubmit(onFormSubmit)}>
       <div className={styles.inputWrapper}>
@@ -46,7 +43,7 @@ function ShipperForm() {
         />
         <AppInput
           className={styles.input}
-          label="Last Name"
+          label="LastName"
           {...register("lastname")}
         />
       </div>
@@ -63,12 +60,30 @@ function ShipperForm() {
           type="number"
         />
       </div>
-
       <div className={styles.inputWrapper}>
+        <AppSelect
+          {...register("company_id")}
+          className={styles.input}
+          label="Company Name"
+        >
+          <option disabled selected />
+
+          <option>FedEx</option>
+          <option>DPD</option>
+          <option>CargoCode</option>
+        </AppSelect>
         <AppInput
           className={styles.input}
           label="Address"
-          {...register("billing_address")}
+          {...register("physical_address")}
+        />
+      </div>
+      <div className={styles.inputWrapper}>
+        <AppInput
+          className={styles.input}
+          label="MC/DOT numer"
+          {...register("mc_dot_number")}
+          type="number"
         />
         <AppInput
           className={styles.input}
@@ -79,13 +94,14 @@ function ShipperForm() {
       <div className={styles.inputWrapper}>
         <AppInput
           className={styles.input}
-          label="Confirm password"
+          label="Confirm Password"
           {...register("confirm_password")}
         />
       </div>
+
       <button className={styles.submitButton}>Create Account</button>
     </form>
   );
-}
+};
 
-export default ShipperForm;
+export default OperatorForm;

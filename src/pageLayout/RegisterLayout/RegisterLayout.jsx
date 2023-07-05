@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import clsx from "clsx";
 import { AppHeader } from "@/components/AppHeader";
+
 import CarrierForm from "./components/CarrierForm";
 import ShipperForm from "./components/ShipperForm";
 import CompanyForm from "./components/CompanyForm";
-import EmployeeForm from "./components/EmployeeForm";
+import OperatorForm from "./components/OperatorForm";
 import styles from "./RegisterLayout.module.scss";
 
 export const RegisterLayout = () => {
@@ -22,8 +23,9 @@ export const RegisterLayout = () => {
 
       case "COMPANY":
         return <CompanyForm />;
+
       case "EMPLOYEE":
-        return <EmployeeForm />;
+        return <OperatorForm />;
     }
   }, [userType]);
 
