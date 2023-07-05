@@ -4,14 +4,20 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import clsx from "clsx";
-
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { AppInput } from "@/components/ui/AppInput";
 import truck from "@/assets/img/cargo.jpg";
 import Logo from "@/assets/img/logo.png";
 import { loginSchema } from "@/validations";
+import { login } from "@/redux/slices/auth.slice";
 import styles from "./LoginLayout.module.scss";
+import Link from "next/link";
+
 export const LoginLayout = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
+  const IsSucceed = useSelector((state) => state.auth.isLoggedIn);
   const {
     register,
     handleSubmit,
@@ -23,12 +29,16 @@ export const LoginLayout = () => {
     resolver: yupResolver(loginSchema),
     mode: "onChange",
   });
+
   const onFormSubmit = (data) => {
     console.log(data);
+    dispatch(login(data));
   };
-  const goToRegister = () => {
-    router.push("/register");
-  };
+
+  React.useEffect(() => {
+    IsSucceed && router.push("/");
+  }, [IsSucceed]);
+
   return (
     <div className={styles.container}>
       <div className={styles.formWrapper}>
@@ -52,16 +62,15 @@ export const LoginLayout = () => {
             />
           </div>
           <div className={styles.buttonsWrapper}>
-            <button
-              className={clsx("button", styles.registerButton)}
-              type="button"
-              onClick={goToRegister}
-            >
-              SignUp
-            </button>
             <button className={clsx("button", styles.buttonSubmit)}>
-              SignIn
+              Sign in
             </button>
+          </div>
+          <div className={styles.link_to_main}>
+            <p>Go to <Link href="/">Main page</Link></p>
+          </div>
+          <div className={styles.link_to_signin}>
+            <p>You don't have account? <Link href="/register">Sign up</Link></p>
           </div>
         </form>
       </div>

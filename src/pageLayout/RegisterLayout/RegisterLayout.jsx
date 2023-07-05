@@ -1,49 +1,34 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import { AppHeader } from "@/components/AppHeader";
-import CarrierForm from "./components/CarrierForm";
 import ShipperForm from "./components/ShipperForm";
 import CompanyForm from "./components/CompanyForm";
-import EmployeeForm from "./components/EmployeeForm";
+import OperatorForm from "./components/OperatorForm";
 import styles from "./RegisterLayout.module.scss";
 
 export const RegisterLayout = () => {
-  const [userType, setUserType] = useState("CARRIER");
+  const [userType, setUserType] = useState("SHIPPER");
   const router = useRouter();
 
   const renderForm = React.useMemo(() => {
     switch (userType) {
-      case "CARRIER":
-        return <CarrierForm />;
-
       case "SHIPPER":
         return <ShipperForm />;
 
       case "COMPANY":
         return <CompanyForm />;
-      case "EMPLOYEE":
-        return <EmployeeForm />;
+
+      case "OPERATOR":
+        return <OperatorForm />;
     }
   }, [userType]);
 
   return (
     <>
-      <AppHeader />
       <h3 className={styles.title}>Create New Account</h3>
       <div className={styles.container}>
         <div className={styles.formWrapper}>
-          <p className={styles.label}>Choose role:</p>
           <div className={styles.choiceWrapper}>
-            <p
-              onClick={() => setUserType("CARRIER")}
-              className={clsx(
-                styles.userType,
-                userType == "CARRIER" && styles.active
-              )}
-            >
-              Carrier
-            </p>
             <p
               onClick={() => setUserType("SHIPPER")}
               className={clsx(
@@ -63,13 +48,13 @@ export const RegisterLayout = () => {
               Logistic company
             </p>
             <p
-              onClick={() => setUserType("EMPLOYEE")}
+              onClick={() => setUserType("OPERATOR")}
               className={clsx(
                 styles.userType,
-                userType == "EMPLOYEE" && styles.active
+                userType == "OPERATOR" && styles.active
               )}
             >
-              Company employee
+              Operator
             </p>
           </div>
           {renderForm}

@@ -6,7 +6,7 @@ import AppSocketProvider from "@/components/AppSocketProvider";
 
 function App({ Component, pageProps }) {
   return (
-    <>
+    <div className="page_holder">
       <Head>
         <title>CargoCode</title>
       </Head>
@@ -15,7 +15,7 @@ function App({ Component, pageProps }) {
           <Component {...pageProps} />
         </AppSocketProvider>
       </Provider>
-    </>
+    </div>
   );
 }
 

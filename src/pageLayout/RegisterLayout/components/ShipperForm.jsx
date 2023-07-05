@@ -1,10 +1,19 @@
 import React, { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import { AppInput } from "@/components/ui/AppInput";
+import { createShipper } from "@/redux/slices/auth.slice";
 import styles from "./RegistrationForms.module.scss";
+import Link from "next/link";
 
 function ShipperForm() {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const IsSucceed = useSelector((state) => state.auth.IsSignUp);
+  console.log(IsSucceed);
   const {
     register,
     handleSubmit,
@@ -18,9 +27,14 @@ function ShipperForm() {
   });
 
   const onFormSubmit = (data) => {
-    console.log(data);
+    delete data.confirm_password;
+    dispatch(createShipper(data));
   };
-  React.useEffect(() => {
+  useEffect(() => {
+    IsSucceed && router.push("/");
+  }, [IsSucceed]);
+
+  useEffect(() => {
     setValue("role", "SHIPPER");
   }, []);
   return (
@@ -29,34 +43,33 @@ function ShipperForm() {
         <AppInput
           className={styles.input}
           label="First Name"
-          {...register("firstName")}
+          {...register("firstname")}
         />
-        <AppInput
-          className={styles.input}
-          label="Last Name"
-          {...register("lastName")}
-        />
-      </div>
-      <div className={styles.inputWrapper}>
-        <AppInput
-          className={styles.input}
-          label="Email"
-          {...register("email")}
-        />
-        <AppInput
-          className={styles.input}
-          label="Phone number"
-          {...register("phone")}
-          type="number"
-        />
-      </div>
-
-      <div className={styles.inputWrapper}>
         <AppInput
           className={styles.input}
           label="Address"
           {...register("billing_address")}
         />
+      </div>
+      <div className={styles.inputWrapper}>
+        <AppInput
+          className={styles.input}
+          label="Last Name"
+          {...register("lastname")}
+        />
+        <AppInput
+          className={styles.input}
+          label="Confirm password"
+          {...register("confirm_password")}
+        />
+      </div>
+
+      <div className={styles.inputWrapper}>
+        <AppInput
+            className={styles.input}
+            label="Email"
+            {...register("email")}
+          />
         <AppInput
           className={styles.input}
           label="Password"
@@ -64,13 +77,20 @@ function ShipperForm() {
         />
       </div>
       <div className={styles.inputWrapper}>
-        <AppInput
+      <AppInput
           className={styles.input}
-          label="Confirm password"
-          {...register("confirm_password")}
+          label="Phone number"
+          {...register("phone")}
+          type="number"
         />
+        <button className={styles.submitButton}>Create Account</button>  
       </div>
-      <button className={styles.submitButton}>Create Account</button>
+      <div className={styles.link_to_main}>
+        <p>Go to <Link href="/">Main page</Link></p>
+      </div>
+      <div className={styles.link_to_signin}>
+        <p>Already have account? <Link href="/login">Sign in</Link></p>
+      </div>
     </form>
   );
 }

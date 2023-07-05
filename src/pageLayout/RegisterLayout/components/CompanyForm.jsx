@@ -1,10 +1,16 @@
 import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppInput } from "@/components/ui/AppInput";
+import { createCompany } from "@/redux/slices/auth.slice";
 import styles from "./RegistrationForms.module.scss";
+import Link from "next/link";
 
 const CompanyForm = () => {
+  const dispach = useDispatch();
+  const IsSucceed = useSelector((state) => state.auth.IsSignUp);
   const {
     register,
     handleSubmit,
@@ -18,44 +24,34 @@ const CompanyForm = () => {
   });
 
   const onFormSubmit = (data) => {
-    console.log(data);
+    delete data.confirm_password;
+    dispach(createCompany(data));
   };
   React.useEffect(() => {
     setValue("role", "COMPANY");
   }, []);
+  React.useEffect(() => {
+    IsSucceed && router.push("/");
+  }, [IsSucceed]);
   return (
     <form className={styles.formWrapper} onSubmit={handleSubmit(onFormSubmit)}>
       <div className={styles.inputWrapper}>
         <AppInput
           className={styles.input}
           label="Company Name"
-          {...register("company_name")}
+          {...register("name")}
         />
         <AppInput
           className={styles.input}
-          label="Email"
-          {...register("email")}
-        />
-      </div>
-      <div className={styles.inputWrapper}>
-        <AppInput
-          className={styles.input}
-          label="Phone Number"
-          {...register("phone")}
-          type="number"
-        />
-        <AppInput
-          className={styles.input}
-          label="Insurance number"
-          {...register("insurance")}
-          type="number"
+          label="Login"
+          {...register("login")}
         />
       </div>
       <div className={styles.inputWrapper}>
         <AppInput
           className={styles.input}
           label="Address"
-          {...register("physical_address")}
+          {...register("address")}
         />
         <AppInput
           className={styles.input}
@@ -64,10 +60,33 @@ const CompanyForm = () => {
         />
       </div>
       <div className={styles.inputWrapper}>
-        <AppInput className={styles.input} label="Confirm Password" />
+        <AppInput
+          className={styles.input}
+          label="Insurance number"
+          {...register("insurance_id")}
+          type="number"
+        />
+        <AppInput
+          className={styles.input}
+          label="Confirm Password"
+          {...register("confirm_password")}
+        />
       </div>
-
-      <button className={styles.submitButton}>Create Account</button>
+      <div className={styles.inputWrapper}>
+        <AppInput
+          className={styles.input}
+          label="Email"
+          type="email"
+          {...register("email")}
+        />
+        <button className={styles.submitButton}>Create Account</button>
+      </div>
+      <div className={styles.link_to_main}>
+        <p>Go to <Link href="/">Main page</Link></p>
+      </div>
+      <div className={styles.link_to_signin}>
+        <p>Already have account? <Link href="/login">Sign in</Link></p>
+      </div>
     </form>
   );
 };
