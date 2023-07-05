@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { AppInput } from "@/components/ui/AppInput";
 import { createCompany } from "@/redux/slices/auth.slice";
 import styles from "./RegistrationForms.module.scss";
+import Link from "next/link";
 
 const CompanyForm = () => {
   const dispach = useDispatch();
@@ -79,6 +80,12 @@ const CompanyForm = () => {
           {...register("email")}
         />
         <button className={styles.submitButton}>Create Account</button>
+      </div>
+      <div className={styles.link_to_main}>
+        <p>Go to <Link href="/">Main page</Link></p>
+      </div>
+      <div className={styles.link_to_signin}>
+        <p>Already have account? <Link href="/login">Sign in</Link></p>
       </div>
     </form>
   );

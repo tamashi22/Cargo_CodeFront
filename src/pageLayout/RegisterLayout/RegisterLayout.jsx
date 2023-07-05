@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import { AppHeader } from "@/components/AppHeader";
-
-import CarrierForm from "./components/CarrierForm";
 import ShipperForm from "./components/ShipperForm";
 import CompanyForm from "./components/CompanyForm";
 import OperatorForm from "./components/OperatorForm";
@@ -21,18 +18,16 @@ export const RegisterLayout = () => {
       case "COMPANY":
         return <CompanyForm />;
 
-      case "EMPLOYEE":
+      case "OPERATOR":
         return <OperatorForm />;
     }
   }, [userType]);
 
   return (
     <>
-      <AppHeader />
       <h3 className={styles.title}>Create New Account</h3>
       <div className={styles.container}>
         <div className={styles.formWrapper}>
-          <p className={styles.label}>Choose role:</p>
           <div className={styles.choiceWrapper}>
             <p
               onClick={() => setUserType("SHIPPER")}
@@ -53,13 +48,13 @@ export const RegisterLayout = () => {
               Logistic company
             </p>
             <p
-              onClick={() => setUserType("EMPLOYEE")}
+              onClick={() => setUserType("OPERATOR")}
               className={clsx(
                 styles.userType,
-                userType == "EMPLOYEE" && styles.active
+                userType == "OPERATOR" && styles.active
               )}
             >
-              Company employee
+              Operator
             </p>
           </div>
           {renderForm}

@@ -29,16 +29,16 @@ export const LoginLayout = () => {
     resolver: yupResolver(loginSchema),
     mode: "onChange",
   });
+
   const onFormSubmit = (data) => {
     console.log(data);
     dispatch(login(data));
   };
-  const goToRegister = () => {
-    router.push("/register");
-  };
+
   React.useEffect(() => {
     IsSucceed && router.push("/");
   }, [IsSucceed]);
+
   return (
     <div className={styles.container}>
       <div className={styles.formWrapper}>
@@ -66,14 +66,11 @@ export const LoginLayout = () => {
               Sign in
             </button>
           </div>
-          <span className={styles.divide_line}>or</span>
-          <div className={styles.signup_link_wrapper}>
-            <Link
-              type="button"
-              className={clsx("button", styles.signup_link)}
-              href="/register">
-              Sign up
-            </Link>
+          <div className={styles.link_to_main}>
+            <p>Go to <Link href="/">Main page</Link></p>
+          </div>
+          <div className={styles.link_to_signin}>
+            <p>You don't have account? <Link href="/register">Sign up</Link></p>
           </div>
         </form>
       </div>
