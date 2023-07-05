@@ -43,28 +43,30 @@ const OperatorForm = () => {
         />
         <AppInput
           className={styles.input}
-          label="LastName"
-          {...register("lastname")}
+          label="MC/DOT numer"
+          {...register("mc_dot_number")}
+          type="number"
         />
       </div>
       <div className={styles.inputWrapper}>
         <AppInput
           className={styles.input}
-          label="Email"
-          {...register("email")}
+          label="LastName"
+          {...register("lastname")}
         />
         <AppInput
           className={styles.input}
-          label="Phone number"
-          {...register("phone")}
-          type="number"
+          label="Address"
+          {...register("physical_address")}
         />
+        
+        
       </div>
       <div className={styles.inputWrapper}>
         <AppSelect
           {...register("company_id")}
           className={styles.input}
-          label="Company Name"
+          label="Company"
         >
           <option disabled selected />
 
@@ -74,32 +76,32 @@ const OperatorForm = () => {
         </AppSelect>
         <AppInput
           className={styles.input}
-          label="Address"
-          {...register("physical_address")}
-        />
-      </div>
-      <div className={styles.inputWrapper}>
-        <AppInput
-          className={styles.input}
-          label="MC/DOT numer"
-          {...register("mc_dot_number")}
-          type="number"
-        />
-        <AppInput
-          className={styles.input}
           label="Password"
           {...register("password")}
         />
+        
       </div>
       <div className={styles.inputWrapper}>
+        <AppInput
+          className={styles.input}
+          label="Email"
+          {...register("email")}
+        />
         <AppInput
           className={styles.input}
           label="Confirm Password"
           {...register("confirm_password")}
         />
       </div>
-
-      <button className={styles.submitButton}>Create Account</button>
+      <div className={styles.inputWrapper}>
+        <AppInput
+          className={styles.input}
+          label="Phone number"
+          {...register("phone")}
+          type="number"
+        />
+        <button className={styles.submitButton}>Create Account</button>
+      </div>
     </form>
   );
 };

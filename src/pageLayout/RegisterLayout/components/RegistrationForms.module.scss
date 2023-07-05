@@ -5,25 +5,32 @@
 .inputWrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     margin-bottom: 30px;
+    div {
+        width: 45%;
+    }
 }
 
 .input {
-    width: 450px;
+    width: 100%;
     padding: 10px;
-    border-radius: 6px;
+    border-radius: 3px;
 }
 
 .submitButton {
-    width: 300px;
+    width: 45%;
+    padding: 10.5px;
+    margin-top: 23px;
     border: 0;
-    height: 56px;
     font-size: 14px;
-    border-radius: 20px;
+    border-radius: 5px;
     color: white;
     background: #2464ad;
-    float: right;
-    margin-bottom: 40px;
     cursor: pointer;
+}
+
+.submitButton:hover {
+    opacity: .8;
 }

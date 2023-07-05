@@ -10,14 +10,11 @@ import OperatorForm from "./components/OperatorForm";
 import styles from "./RegisterLayout.module.scss";
 
 export const RegisterLayout = () => {
-  const [userType, setUserType] = useState("CARRIER");
+  const [userType, setUserType] = useState("SHIPPER");
   const router = useRouter();
 
   const renderForm = React.useMemo(() => {
     switch (userType) {
-      case "CARRIER":
-        return <CarrierForm />;
-
       case "SHIPPER":
         return <ShipperForm />;
 
@@ -37,15 +34,6 @@ export const RegisterLayout = () => {
         <div className={styles.formWrapper}>
           <p className={styles.label}>Choose role:</p>
           <div className={styles.choiceWrapper}>
-            <p
-              onClick={() => setUserType("CARRIER")}
-              className={clsx(
-                styles.userType,
-                userType == "CARRIER" && styles.active
-              )}
-            >
-              Carrier
-            </p>
             <p
               onClick={() => setUserType("SHIPPER")}
               className={clsx(

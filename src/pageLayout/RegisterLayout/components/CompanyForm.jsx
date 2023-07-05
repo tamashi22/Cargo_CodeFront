@@ -54,16 +54,16 @@ const CompanyForm = () => {
         />
         <AppInput
           className={styles.input}
-          label="Insurance number"
-          {...register("insurance_id")}
-          type="number"
+          label="Password"
+          {...register("password")}
         />
       </div>
       <div className={styles.inputWrapper}>
         <AppInput
           className={styles.input}
-          label="Password"
-          {...register("password")}
+          label="Insurance number"
+          {...register("insurance_id")}
+          type="number"
         />
         <AppInput
           className={styles.input}
@@ -71,8 +71,15 @@ const CompanyForm = () => {
           {...register("confirm_password")}
         />
       </div>
-
-      <button className={styles.submitButton}>Create Account</button>
+      <div className={styles.inputWrapper}>
+        <AppInput
+          className={styles.input}
+          label="Email"
+          type="email"
+          {...register("email")}
+        />
+        <button className={styles.submitButton}>Create Account</button>
+      </div>
     </form>
   );
 };

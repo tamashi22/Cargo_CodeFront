@@ -12,6 +12,8 @@ import Logo from "@/assets/img/logo.png";
 import { loginSchema } from "@/validations";
 import { login } from "@/redux/slices/auth.slice";
 import styles from "./LoginLayout.module.scss";
+import Link from "next/link";
+
 export const LoginLayout = () => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -60,16 +62,18 @@ export const LoginLayout = () => {
             />
           </div>
           <div className={styles.buttonsWrapper}>
-            <button
-              className={clsx("button", styles.registerButton)}
-              type="button"
-              onClick={goToRegister}
-            >
-              SignUp
-            </button>
             <button className={clsx("button", styles.buttonSubmit)}>
-              SignIn
+              Sign in
             </button>
+          </div>
+          <span className={styles.divide_line}>or</span>
+          <div className={styles.signup_link_wrapper}>
+            <Link
+              type="button"
+              className={clsx("button", styles.signup_link)}
+              href="/register">
+              Sign up
+            </Link>
           </div>
         </form>
       </div>
