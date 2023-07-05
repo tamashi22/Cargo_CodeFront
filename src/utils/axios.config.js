@@ -1,8 +1,7 @@
 import axios from "axios";
 
 export const privateApi = axios.create({
-    baseURL: process.env.REACT_APP_BASE_URL,
-    timeout: 500
+    baseURL: 'http://localhost:3000/'
 });
 
 privateApi.interceptors.request.use(

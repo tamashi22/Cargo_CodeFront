@@ -1,0 +1,117 @@
+.table_holder {
+    width: 100%;
+    min-height: 200px;
+    padding: 20px 5%;
+    table {
+        border-collapse: collapse;
+        border-radius: 3px;
+        border-style: hidden;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, .3);
+        width: 100%;
+        thead {
+            tr {
+                border-bottom: 1px solid rgba(0, 0, 0, .2);
+                // color: #fff;
+                th {
+                    padding: 15px 10px;
+                    background-color: #2d2d2d;
+                    // background-color: #f1f1f1;
+                    color: #f1f1f1;
+                    text-align: start;
+                    button {
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                        color: #f1f1f1;
+                        margin-left: 5px;
+                    }
+                }
+                th:first-child {
+                    padding-left: 20px;
+                    border-radius: 3px 0 0 0px;
+                }
+                th:last-child {
+                    padding-right: 50px;
+                    text-align: end;
+                    border-radius: 0 3px 0 0;
+                }
+            }
+        }
+        tbody {
+            tr {
+                cursor: pointer;
+                position: relative;
+                // border-bottom: 1px solid rgba(0, 0, 0, .2);
+                td {
+                    padding: 10px 10px;
+                    font-weight: 500;
+                }
+                td:first-child {
+                    padding-left: 20px;
+                }
+                td:last-child {
+                    text-align: end;
+                    button {
+                        cursor: pointer;
+                        background-color: #2d2d2d;
+                        padding: 10px;
+                        border: none;
+                        color: #f1f1f1;
+                        border-radius: 3px;
+                    }
+                    button:hover {
+                        opacity: .8;
+                    }
+                }
+            }
+            tr:hover {
+                td {
+                    background-color: rgba( 100, 100, 100, .2) !important;
+                    position: relative;
+                }
+                td::before {
+                    content: '-';
+                    color: transparent;
+                    width: 100%;
+                    height: 1px;
+                    background-color: #2d2d2d;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+                td::after {
+                    content: '-';
+                    color: transparent;
+                    width: 100%;
+                    height: 1px;
+                    background-color: #2d2d2d;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+            }
+            tr:last-child {
+                border-bottom: none;
+                td:first-child {
+                    border-radius: 0 0 0 3px;
+                }
+                td:last-child {
+                    border-radius: 0 0 3px 0;
+                }
+            }
+        }
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in-row {
+    animation: fade-in 0.5s ease-in-out;
+}
