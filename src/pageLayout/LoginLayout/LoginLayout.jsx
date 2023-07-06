@@ -62,7 +62,10 @@ export const LoginLayout = () => {
             />
           </div>
           <div className={styles.buttonsWrapper}>
-            <button className={clsx("button", styles.buttonSubmit)}>
+            <button
+              className={clsx("button", styles.buttonSubmit)}
+              onClick={goToRegister}
+            >
               Sign in
             </button>
           </div>
@@ -71,7 +74,8 @@ export const LoginLayout = () => {
             <Link
               type="button"
               className={clsx("button", styles.signup_link)}
-              href="/register">
+              href="/register"
+            >
               Sign up
             </Link>
           </div>

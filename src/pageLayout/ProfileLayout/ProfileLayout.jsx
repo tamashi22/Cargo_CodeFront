@@ -5,10 +5,9 @@ import styles from "./style.module.scss";
 import { logout } from "@/redux/slices/auth.slice";
 
 const ProfileLayout = () => {
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
   const LogOut = () => {
-    event.preventDefault();
-    dispach(logout());
+    dispatch(logout());
   };
   return (
     <div>

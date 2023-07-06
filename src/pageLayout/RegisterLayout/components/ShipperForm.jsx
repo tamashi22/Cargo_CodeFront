@@ -30,7 +30,7 @@ function ShipperForm() {
     dispatch(createShipper(data));
   };
   useEffect(() => {
-    IsSucceed && router.push("/");
+    IsSucceed && router.push("/login");
   }, [IsSucceed]);
 
   useEffect(() => {
