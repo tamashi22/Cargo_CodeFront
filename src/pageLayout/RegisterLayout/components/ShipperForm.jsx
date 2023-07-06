@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { AppInput } from "@/components/ui/AppInput";
 import { createShipper } from "@/redux/slices/auth.slice";
 import styles from "./RegistrationForms.module.scss";
+import Link from "next/link";
 
 function ShipperForm() {
   const dispatch = useDispatch();
@@ -84,7 +85,12 @@ function ShipperForm() {
         />
         <button className={styles.submitButton}>Create Account</button>  
       </div>
-      
+      <div className={styles.link_to_main}>
+        <p>Go to <Link href="/">Main page</Link></p>
+      </div>
+      <div className={styles.link_to_signin}>
+        <p>Already have account? <Link href="/login">Sign in</Link></p>
+      </div>
     </form>
   );
 }

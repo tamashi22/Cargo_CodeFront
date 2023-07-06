@@ -7,6 +7,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    div {
+        display: flex;
+        align-items: center;
+    }
 }
 
 .logo {
@@ -36,4 +40,29 @@
     background: white;
     cursor: pointer;
     border-radius: 3px;
+}
+
+.nav_list {
+    margin: 0 100px;
+    .nav {
+        margin: 0 20px;
+        color: #2d2d2d;
+        text-decoration: none;
+        position: relative;
+        padding: 10px 0;
+    }
+    .nav::after {
+        content: '-';
+        color: transparent;
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #3d3d3d;
+        transition: all .2s linear;
+    }
+    .nav:hover::after {
+        width: 100%;
+    }
 }
