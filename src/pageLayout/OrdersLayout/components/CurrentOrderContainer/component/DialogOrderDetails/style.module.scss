@@ -1,0 +1,23 @@
+.order_details {
+    width: 100%;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    .info_column {
+        width: 40%;
+        .column_row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            p:first-child {
+                width: 35%;
+            }
+            p:last-child {
+                width: 65%;
+                text-align: start;
+            }
+        }
+    }
+}

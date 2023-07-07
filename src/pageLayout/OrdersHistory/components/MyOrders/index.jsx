@@ -1,12 +1,20 @@
-import React from 'react';
 import { CURRENCY } from '@/constants/currency';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
+import React from 'react';
 import { useState } from 'react';
+import SelectedOrder from '../SelectedOrder';
 import styles from './style.module.scss';
-import SelectedOrder from '../SelectedOrder/inidex';
 
-const OrderList = ({status, orders = [], selectedOrder, onOrderSelect}) => {
+const STATUS_CLASSES = {
+    'waiting': 'waiting_status',
+    'finished': 'finished_status',
+    'on_way': 'on_way_status',
+    'canceled': 'canceled_status',
+    'accepted': 'accepted_status'
+}
+
+const MyOrders = ({ orders = [], selectedOrder, onOrderSelect}) => {
     const [filter, setFilter] = useState(null);
     return (
         <div className={styles.table_holder}>
@@ -42,7 +50,7 @@ const OrderList = ({status, orders = [], selectedOrder, onOrderSelect}) => {
                             <button>⏏</button>
                         </th>
                         <th>
-                            Actions
+                            Status
                         </th>
                     </tr>
                 </thead>
@@ -60,7 +68,9 @@ const OrderList = ({status, orders = [], selectedOrder, onOrderSelect}) => {
                                         <td className={clsx(index % 2 && styles.odd)}>{dayjs(item.delivery_date).format('DD/MM/YYYY')}</td>
                                         <td className={clsx(index % 2 && styles.odd)}>{item.required_equipment ? 'YES' : 'NO'}</td>
                                         <td className={clsx(index % 2 && styles.odd)}>{item.price}{CURRENCY[item.currency]}</td>
-                                        <td className={clsx(index % 2 && styles.odd)}><button>Offer to carriers</button></td>
+                                        <td className={clsx(index % 2 && styles.odd)}>
+                                            <span className={styles[STATUS_CLASSES[item.status]]}>{item.status}</span>
+                                        </td>
                                 </tr>
                                 {
                                     selectedOrder?.id === item.id &&
@@ -78,5 +88,6 @@ const OrderList = ({status, orders = [], selectedOrder, onOrderSelect}) => {
             </table>
         </div>
     )
-}
-export default OrderList;
+};
+
+export default MyOrders;

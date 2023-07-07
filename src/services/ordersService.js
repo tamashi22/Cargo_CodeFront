@@ -13,3 +13,15 @@ export const getOrders = createAsyncThunk(
         }
     }
 )
+
+export const getMyOrdersApi = createAsyncThunk(
+    'orders/getMyOrders',
+    async(_, { rejectWithValue }) => {
+        try {
+            const res = await privateApi.get('orders/my-orders');
+            return res.data;
+        } catch (e) {
+            return rejectWithValue(e.response.data.message);
+        }
+    }
+)

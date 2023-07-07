@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useEffect } from "react";
 import { client } from "@/utils/socket";
-import { addOrder } from '@/redux/slices/orders.slice';
+import { addOrder, setAllMessage } from '@/redux/slices/orders.slice';
 
 const AppSocketProvider = ({children}) => {
     const dispatch = useDispatch();
@@ -20,6 +20,15 @@ const AppSocketProvider = ({children}) => {
          */
         client.on('orders:create-order', (order) => {
             dispatch(addOrder(order));
+        });
+
+        client.on('orders:receive-room-messages', (messages) => {
+            console.log('Messages: ', messages);
+            dispatch(setAllMessage(messages));
+        });
+
+        client.on('order:receive-message', (message) => {
+            
         });
     }, []);
 

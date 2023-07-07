@@ -1,0 +1,47 @@
+.chat_holder {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    .dialog_holder {
+        flex-grow: 1;
+        padding: 0 10px;
+        overflow-y: auto;
+        // background: url('https://blog.1a23.com/wp-content/uploads/sites/2/2020/02/Desktop.png');
+        // background: url('https://img.freepik.com/premium-vector/social-networks-dating-apps-vector-seamless-pattern_341076-469.jpg');
+        // background: url('https://img.freepik.com/premium-vector/monochrome-vector-seamless-pattern-speech-bubbles-form-oval-cloud-rectangle_387335-1199.jpg');
+        // background: url('https://img.freepik.com/premium-vector/chat-seamless-pattern-with-speech-bubbles-vector-background_104589-2053.jpg');
+        background: url('https://mir-s3-cdn-cf.behance.net/project_modules/disp/2d9dd173426833.5c08f5634ff45.png');
+        background-size: contain;
+    }
+    .message_send_block {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 0 2px 0px rgba(0, 0, 0, .8);
+        .input_holder {
+            flex-grow: 1;
+            padding: 10px 20px;
+            input {
+                width: 100%;
+                padding: 10px;
+                border-radius: 3px;
+                border: 1px solid #999;
+                outline: none;
+            }
+        }
+        .submit_button_holder {
+            margin-right: 20px;
+            text-align: center;
+            button {
+                padding: 10px 20px;
+                border: 1px solid #999;
+                font-weight: 500;
+                background-color: #2d2d2d;
+                border-radius: 3px;
+                color: #f1f1f1;
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -1,6 +1,5 @@
 .table_holder {
-    width: 95%;
-    margin: 0 auto;
+    width: 100%;
     min-height: 200px;
     padding: 20px 0;
     table {
@@ -32,7 +31,7 @@
                 }
                 th:last-child {
                     padding-right: 50px;
-                    text-align: center;
+                    text-align: end;
                     border-radius: 0 3px 0 0;
                 }
             }

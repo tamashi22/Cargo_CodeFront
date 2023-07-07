@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Logo from "@/assets/img/logo.png";
 import User from "@/assets/svg/user.svg";
+import clsx from "clsx";
 
 const NAVS_LIST = [
   {title: 'Home', path: '/'},
@@ -18,11 +19,18 @@ const NAVS_LIST = [
 export const AppHeader = () => {
   const router = useRouter();
   const [isLogged, setIsLogged] = useState(false);
+  const [activeNav, setActiveNav] = useState(-1);
   const IsSigIn = useSelector((state) => state.auth.isLoggedIn);
 
   useEffect(() => {
     setIsLogged(IsSigIn);
   }, []);
+
+  useEffect(() => {
+    let route = router.route.split('/')[1];
+    const index = NAVS_LIST.findIndex((nav) => nav.path === ('/' + route));
+    setActiveNav(index);
+  }, [router]);
 
   const goToProfile = () => {
     router.push("/profile");
@@ -41,7 +49,7 @@ export const AppHeader = () => {
             <div className={styles.nav_list}>
               {
                 NAVS_LIST.map((nav, index) => (
-                  <Link key={index} className={styles.nav} href={nav.path}>{nav.title}</Link>
+                  <Link key={index} className={clsx(styles.nav, index === activeNav && styles.active_nav)} href={nav.path}>{nav.title}</Link>
                 ))
               }
             </div>

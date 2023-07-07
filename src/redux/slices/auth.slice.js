@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import jwt_decode from "jwt-decode";
 
 import {
     createCarrierApi,
@@ -9,7 +10,7 @@ import {
 } from "@/services/AuthService";
 let token = null;
 if (typeof window !== "undefined") {
-    token = JSON.parse(localStorage.getItem("access_token"));
+    token = localStorage.getItem("access_token");
 }
 
 export const login = createAsyncThunk("auth/login", async(obj, thunkAPI) => {
@@ -70,7 +71,10 @@ export const createOperator = createAsyncThunk(
     }
 );
 const IsLogin = () =>
-    token ? { isLoggedIn: true, access_token: token } : { isLoggedIn: false, access_token: "" };
+    token ? { isLoggedIn: true, access_token: token, user: jwt_decode(token) } : { isLoggedIn: false, access_token: "" };
+
+console.log(IsLogin());
+
 const initialState = {
     ...IsLogin(),
     IsSignUp: false,
@@ -135,6 +139,7 @@ export const authSlice = createSlice({
         [login.fulfilled]: (state, action) => {
             state.isLoggedIn = true;
             state.access_token = action.payload.access_token;
+            state.user = jwt_decode(action.payload.access_token);
         },
         [login.rejected]: (state, { payload }) => {
             state.isLoggedIn = false;
