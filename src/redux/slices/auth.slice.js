@@ -22,6 +22,7 @@ export const login = createAsyncThunk("auth/login", async(obj, thunkAPI) => {
         return thunkAPI.rejectWithValue(error.response.data.message);
     }
 });
+
 export const createCarrier = createAsyncThunk(
     "user/carrier",
     async(obj, thunkAPI) => {
@@ -76,7 +77,7 @@ const IsLogin = () =>
 const initialState = {
     ...IsLogin(),
     IsSignUp: false,
-    error: null
+    error: null,
 };
 
 export const authSlice = createSlice({

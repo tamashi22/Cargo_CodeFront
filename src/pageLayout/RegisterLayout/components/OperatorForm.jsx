@@ -9,7 +9,7 @@ import { createOperator } from "@/redux/slices/auth.slice";
 import styles from "./RegistrationForms.module.scss";
 import Link from "next/link";
 
-const OperatorForm = () => {
+const OperatorForm = ({ values, variant }) => {
   const dispach = useDispatch();
   const IsSucceed = useSelector((state) => state.auth.IsSignUp);
   const {
@@ -25,9 +25,16 @@ const OperatorForm = () => {
   });
 
   const onFormSubmit = (data) => {
+    if (variant == "profile") {
+      console.log(data);
+      return;
+    }
     delete data.confirm_password;
     dispach(createOperator(data));
   };
+  React.useEffect(() => {
+    reset(values);
+  }, [values]);
   React.useEffect(() => {
     setValue("role", "OPERATOR");
   }, []);
@@ -60,8 +67,6 @@ const OperatorForm = () => {
           label="Address"
           {...register("physical_address")}
         />
-        
-        
       </div>
       <div className={styles.inputWrapper}>
         <AppSelect
@@ -75,12 +80,13 @@ const OperatorForm = () => {
           <option>DPD</option>
           <option>CargoCode</option>
         </AppSelect>
-        <AppInput
-          className={styles.input}
-          label="Password"
-          {...register("password")}
-        />
-        
+        {variant == "profile" ? null : (
+          <AppInput
+            className={styles.input}
+            label="Password"
+            {...register("password")}
+          />
+        )}
       </div>
       <div className={styles.inputWrapper}>
         <AppInput
@@ -88,11 +94,13 @@ const OperatorForm = () => {
           label="Email"
           {...register("email")}
         />
-        <AppInput
-          className={styles.input}
-          label="Confirm Password"
-          {...register("confirm_password")}
-        />
+        {variant == "profile" ? null : (
+          <AppInput
+            className={styles.input}
+            label="Confirm Password"
+            {...register("confirm_password")}
+          />
+        )}
       </div>
       <div className={styles.inputWrapper}>
         <AppInput
@@ -103,12 +111,21 @@ const OperatorForm = () => {
         />
         <button className={styles.submitButton}>Create Account</button>
       </div>
-      <div className={styles.link_to_main}>
-        <p>Go to <Link href="/">Main page</Link></p>
-      </div>
-      <div className={styles.link_to_signin}>
-        <p>Already have account? <Link href="/login">Sign in</Link></p>
-      </div>
+
+      {variant == "profile" ? null : (
+        <>
+          <div className={styles.link_to_main}>
+            <p>
+              Go to <Link href="/">Main page</Link>
+            </p>
+          </div>
+          <div className={styles.link_to_signin}>
+            <p>
+              Already have account? <Link href="/login">Sign in</Link>
+            </p>
+          </div>
+        </>
+      )}
     </form>
   );
 };
