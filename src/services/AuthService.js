@@ -22,10 +22,7 @@ export const createOperatorApi = async (data) => {
 export const loginApi = async (data) => {
   const response = await privateApi.post("auth/login/", data);
   if (response.data.access_token) {
-    localStorage.setItem(
-      "access_token",
-      JSON.stringify(response.data.access_token)
-    );
+    localStorage.setItem("access_token", response.data.access_token);
   }
   return response.data;
 };

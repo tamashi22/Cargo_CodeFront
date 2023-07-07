@@ -6,9 +6,10 @@ import { useDispatch } from "react-redux";
 import { AppInput } from "@/components/ui/AppInput";
 import { createCompany } from "@/redux/slices/auth.slice";
 import styles from "./RegistrationForms.module.scss";
+
 import Link from "next/link";
 
-const CompanyForm = () => {
+const CompanyForm = ({ values, variant }) => {
   const dispach = useDispatch();
   const IsSucceed = useSelector((state) => state.auth.IsSignUp);
   const {
@@ -22,11 +23,19 @@ const CompanyForm = () => {
     // resolver: yupResolver(),
     // mode: "onChange",
   });
-
+  console.log(variant);
   const onFormSubmit = (data) => {
+    if (variant == "profile") {
+      console.log(data);
+      return;
+    }
     delete data.confirm_password;
     dispach(createCompany(data));
   };
+  React.useEffect(() => {
+    reset(values);
+  }, [values]);
+
   React.useEffect(() => {
     setValue("role", "COMPANY");
   }, []);
@@ -53,11 +62,13 @@ const CompanyForm = () => {
           label="Address"
           {...register("address")}
         />
-        <AppInput
-          className={styles.input}
-          label="Password"
-          {...register("password")}
-        />
+        {variant == "profile" ? null : (
+          <AppInput
+            className={styles.input}
+            label="Password"
+            {...register("password")}
+          />
+        )}
       </div>
       <div className={styles.inputWrapper}>
         <AppInput
@@ -66,11 +77,13 @@ const CompanyForm = () => {
           {...register("insurance_id")}
           type="number"
         />
-        <AppInput
-          className={styles.input}
-          label="Confirm Password"
-          {...register("confirm_password")}
-        />
+        {variant == "profile" ? null : (
+          <AppInput
+            className={styles.input}
+            label="Confirm Password"
+            {...register("confirm_password")}
+          />
+        )}
       </div>
       <div className={styles.inputWrapper}>
         <AppInput
@@ -79,14 +92,24 @@ const CompanyForm = () => {
           type="email"
           {...register("email")}
         />
-        <button className={styles.submitButton}>Create Account</button>
+        <button className={styles.submitButton}>
+          {variant == "profile" ? "Save Changes" : "Create Account"}
+        </button>
       </div>
-      <div className={styles.link_to_main}>
-        <p>Go to <Link href="/">Main page</Link></p>
-      </div>
-      <div className={styles.link_to_signin}>
-        <p>Already have account? <Link href="/login">Sign in</Link></p>
-      </div>
+      {variant == "profile" ? null : (
+        <>
+          <div className={styles.link_to_main}>
+            <p>
+              Go to <Link href="/">Main page</Link>
+            </p>
+          </div>
+          <div className={styles.link_to_signin}>
+            <p>
+              Already have account? <Link href="/login">Sign in</Link>
+            </p>
+          </div>
+        </>
+      )}
     </form>
   );
 };

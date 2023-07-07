@@ -6,6 +6,7 @@ import { TRIMBLE_API_KEY_2 } from "@/constants/trimble";
 const TrimbleMap = React.forwardRef(
   ({
     className,
+    ref,
     //rest information about order
   }) => {
     const [location, setLocation] = useState();
@@ -35,8 +36,9 @@ const TrimbleMap = React.forwardRef(
           new TrimbleMaps.LngLat(-74.629749, 40.26118),
         ],
       });
+
       const ctrl = new MapMenus({});
-      myMap.addControl(ctrl, "top-left");
+
       var point = {
         type: "FeatureCollection",
         features: [
@@ -52,7 +54,7 @@ const TrimbleMap = React.forwardRef(
           },
         ],
       };
-
+      myMap.addControl(ctrl, "top-left");
       myMap.on("load", function () {
         myRoute.addTo(myMap);
         myMap.addSource("point", {
@@ -70,44 +72,38 @@ const TrimbleMap = React.forwardRef(
             "icon-keep-upright": true,
           },
         });
-        // Listen for clicks on the point layer
+        // // Listen for clicks on the point layer
         myMap.on("click", "point", function (evt) {
           const popupLocation = evt.features[0].geometry.coordinates.slice();
           const popupContent = evt.features[0].properties.name;
-
           new TrimbleMaps.Popup()
             .setLngLat(popupLocation)
             .setHTML(popupContent)
             .addTo(myMap);
         });
-
         // Change cursor when hovering over a feature on the points layer
         myMap.on("mouseenter", "point", function () {
           myMap.getCanvas().style.cursor = "pointer";
         });
-
         // Change cursor back
         myMap.on("mouseleave", "point", function () {
           myMap.getCanvas().style.cursor = "";
         });
-
         //   myMap.setWeatherRadarVisibility(true);
-        //     myMap.set3dBuildingVisibility(true);
+        // myMap.set3dBuildingVisibility(true);
         //   myMap.setTrafficVisibility(true);
         //   myMap.setPlacesVisibility(true);
         //   myMap.setPOIVisibility(true);
         //   trafficIncident.addTo(myMap);
         //   truckRestriction.addTo(myMap);
-        
         // Customize your map once loaded
       });
     }, []);
 
-    console.log(location);
     return (
-      <>
+      <div>
         <div ref={mapContainerRef} className={className}></div>
-      </>
+      </div>
     );
   }
 );

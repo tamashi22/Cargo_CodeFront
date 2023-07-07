@@ -10,10 +10,11 @@ export default function Document() {
         ></link>
         <script src="https://maps-sdk.trimblemaps.com/v3/trimblemaps-3.10.0.js"></script>
         <script src="https://maps-sdk.trimblemaps.com/addon/trimblemaps-mapmenus-1.0.4.js"></script>
+
         <link
-          rel="stylesheet"
           href="https://maps-sdk.trimblemaps.com/addon/trimblemaps-mapmenus-1.0.4.css"
-        />
+          rel="stylesheet"
+        ></link>
       </Head>
       <body>
         <Main />
