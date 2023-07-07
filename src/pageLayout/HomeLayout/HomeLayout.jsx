@@ -1,5 +1,4 @@
 import React from "react";
-// import { TrimpleMap } from "@/components/TrimbleMap";
 import dynamic from "next/dynamic";
 import styles from "./HomeLayout.module.scss";
 const HomeLayout = () => {
@@ -9,7 +8,7 @@ const HomeLayout = () => {
   });
   return (
     <div className={styles.wrapper}>
-      {/* <Map className={styles.mapContainer} /> */}
+      <Map className={styles.mapContainer} /> 
     </div>
   );
 };

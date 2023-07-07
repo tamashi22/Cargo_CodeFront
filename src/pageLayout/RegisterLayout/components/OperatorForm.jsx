@@ -32,7 +32,7 @@ const OperatorForm = () => {
     setValue("role", "OPERATOR");
   }, []);
   React.useEffect(() => {
-    IsSucceed && router.push("/");
+    IsSucceed && router.push("/login");
   }, [IsSucceed]);
   return (
     <form className={styles.formWrapper} onSubmit={handleSubmit(onFormSubmit)}>

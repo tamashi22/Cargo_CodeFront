@@ -6,11 +6,12 @@ export const AppInput = React.forwardRef(
   ({ error, label, className, ...props }, ref) => {
     return (
       <div className={styles.wrapper}>
-        <label className={styles.label}>{label}</label>
+        <p className={styles.label}>{label}</p>
         <input
           ref={ref}
           className={clsx(styles.input, className, error && styles.errorInput)}
-          {...props}/>
+          {...props}
+        />
         <p className={styles.error}>{error}</p>
       </div>
     );

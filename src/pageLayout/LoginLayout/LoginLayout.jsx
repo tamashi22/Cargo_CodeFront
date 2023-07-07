@@ -61,15 +61,22 @@ export const LoginLayout = () => {
             />
           </div>
           <div className={styles.buttonsWrapper}>
-            <button className={clsx("button", styles.buttonSubmit)}>
+            <button
+              className={clsx("button", styles.buttonSubmit)}
+              // onClick={goToRegister}
+            >
               Sign in
             </button>
           </div>
           <div className={styles.link_to_main}>
-            <p>Go to <Link href="/">Main page</Link></p>
+            <p>
+              Go to <Link href="/">Main page</Link>
+            </p>
           </div>
           <div className={styles.link_to_signin}>
-            <p>You don't have account? <Link href="/register">Sign up</Link></p>
+            <p>
+              You don't have account? <Link href="/register">Sign up</Link>
+            </p>
           </div>
         </form>
       </div>
