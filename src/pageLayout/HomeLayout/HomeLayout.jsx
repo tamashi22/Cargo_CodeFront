@@ -8,7 +8,6 @@ const HomeLayout = () => {
   });
   return (
     <div className={styles.wrapper}>
-      <Map className={styles.mapContainer} /> 
     </div>
   );
 };
