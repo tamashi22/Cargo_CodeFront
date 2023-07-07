@@ -19,7 +19,6 @@ export const createOperatorApi = async(data) => {
     return response.data;
 };
 export const loginApi = async(data) => {
-    console.log('Private api: ', privateApi);
     const response = await privateApi.post("auth/login/", data);
 
     if (response.data.access_token) {
@@ -29,6 +28,5 @@ export const loginApi = async(data) => {
         );
     }
 
-    console.log(response.data);
     return response.data;
 };

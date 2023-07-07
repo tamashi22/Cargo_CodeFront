@@ -5,18 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import DialogContent from './component/DialogContent';
 import styles from './style.module.scss';
 
-const MOCH = [
-    {id: 0, name: 'Order row'},
-    {id: 1, name: 'Order row'},
-    {id: 2, name: 'Order row'},
-    {id: 3, name: 'Order row'},
-    {id: 4, name: 'Order row'},
-]
-
 const CurrentOrderContainer = () => {
     const dispatch = useDispatch();
     const { myOrders } = useSelector(state => state.orders);
-    const [openOrder, setOpenOrder] = useState(MOCH[0].id);
+    const [openOrder, setOpenOrder] = useState(null);
     const handleOrderRowClick = (id) => {
         setOpenOrder(id);
     }
@@ -48,7 +40,7 @@ const CurrentOrderContainer = () => {
             <div className={styles.dialog_content}>
                 {
                     openOrder > -1 &&
-                    <DialogContent order={openOrder} />
+                    <DialogContent order={myOrders[openOrder]} />
                 }
             </div>
         </div>

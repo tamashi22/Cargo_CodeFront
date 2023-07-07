@@ -1,4 +1,5 @@
 // import { setAllMessage } from '@/redux/slices/orders.slice';
+import { setMessage } from '@/redux/slices/orders.slice';
 import { client } from '@/utils/socket';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,12 +21,14 @@ const DialogChat = ({orderId}) => {
             return;
         }
         if (!isSent) {
-            client.volatile.emit('orders:send-message', {text, orderId, authorId: user.id});
+            const message = {text, orderId, authorId: user.id};
+            client.volatile.emit('orders:send-message', message);
+            dispatch(setMessage({data: {...message, author: {id: user.id}}, orderId}));
             isSent = true;
         }
         setText('');
     }
-
+    
     const handleTextChange = ({target}) => {
         setText(target.value);
     }
@@ -39,7 +42,7 @@ const DialogChat = ({orderId}) => {
             <div className={styles.dialog_holder}>
                 <div>
                     {
-                        order.chat && order.chat.map((message) => (<Message key={message.id} message={message} myId={1}/>))
+                        order?.chat && order.chat.map((message) => (<Message key={message.id} message={message} myId={1}/>))
                     }
                 </div>
             </div>

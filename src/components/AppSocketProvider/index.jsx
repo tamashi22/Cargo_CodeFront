@@ -22,8 +22,10 @@ const AppSocketProvider = ({children}) => {
             dispatch(addOrder(order));
         });
 
+        /**
+         * Receive order messages
+         */
         client.on('orders:receive-room-messages', (messages) => {
-            console.log('Messages: ', messages);
             dispatch(setAllMessage(messages));
         });
 

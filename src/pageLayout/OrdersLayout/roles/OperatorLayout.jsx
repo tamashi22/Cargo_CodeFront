@@ -10,9 +10,6 @@ const OperatorLayout = () => {
     const { orders, selectedOrder, status } = useSelector(state => state.orders);
 
     const handleSelectOrder = (id) => {
-        console.log(id);
-        console.log(selectedOrder);
-        console.log(selectedOrder?.id === id);
         if (selectedOrder?.id === id) {
             dispatch(unselectOrder())
         }

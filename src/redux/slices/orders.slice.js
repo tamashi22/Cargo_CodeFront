@@ -52,15 +52,16 @@ export const ordersSlice = createSlice({
             }
         },
         setAllMessage: (state, { payload }) => {
+            console.log('Payload: ', payload);
             const orderIndex = state.myOrders.findIndex(order => order.id === payload.orderId);
             if (orderIndex > -1) {
                 state.myOrders[orderIndex]['chat'] = payload.data;
             }
         },
         setMessage: (state, { payload }) => {
-            const orderIndex = state.orders.findIndex(order => order.id === payload.orderId);
+            const orderIndex = state.myOrders.findIndex(order => order.id === payload.orderId);
             if (orderIndex > -1) {
-                state.orders[orderIndex]['chat'] = [payload.data, ...state.orders[orderIndex]['chat']];
+                state.myOrders[orderIndex]['chat'] = [...state.myOrders[orderIndex]['chat'], payload.data];
             }
         }
     },
@@ -98,7 +99,8 @@ export const {
     unselectMyOrder,
     addOrder,
     setAllMessage,
-    unselectOrder
+    unselectOrder,
+    setMessage
 } = ordersSlice.actions;
 
 export default ordersSlice;

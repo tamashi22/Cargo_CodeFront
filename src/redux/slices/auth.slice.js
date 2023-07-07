@@ -73,8 +73,6 @@ export const createOperator = createAsyncThunk(
 const IsLogin = () =>
     token ? { isLoggedIn: true, access_token: token, user: jwt_decode(token) } : { isLoggedIn: false, access_token: "" };
 
-console.log(IsLogin());
-
 const initialState = {
     ...IsLogin(),
     IsSignUp: false,

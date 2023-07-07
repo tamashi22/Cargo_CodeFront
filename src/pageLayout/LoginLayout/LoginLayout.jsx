@@ -31,7 +31,6 @@ export const LoginLayout = () => {
   });
 
   const onFormSubmit = (data) => {
-    console.log(data);
     dispatch(login(data));
   };
 

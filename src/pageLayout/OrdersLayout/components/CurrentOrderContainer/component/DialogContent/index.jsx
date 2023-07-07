@@ -65,7 +65,7 @@ const DialogContent = ({order}) => {
             }
             {
                 activeNav === 'map' &&
-                <DialogMap />
+                <DialogMap order={order}/>
             }
             {
                 activeNav === 'chat' &&
