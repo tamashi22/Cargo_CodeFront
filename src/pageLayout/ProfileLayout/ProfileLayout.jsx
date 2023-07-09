@@ -53,41 +53,34 @@ const ProfileLayout = () => {
   return (
     <div className={styles.wrapper}>
       <AppHeader />
-      <div>
-        <div className="container">
-          <div className={styles.conentWrapper}>
-            <div className={styles.userImage}>
-              <div className={styles.ImageWrapper}>
-                <Image
-                  src={fileUrl || userImage}
-                  alt="user"
-                  objectFit="cover"
-                  layout="responsive"
-                  width={100}
-                  height={100}
-                ></Image>
-              </div>
 
-              <label className={styles.inputButton}>
-                <p>Change Photo</p>
-                <input type="file" onChange={changePhoto}></input>
-              </label>
-              <button onClick={LogOut} className={styles.logOutBtn}>
-                Log out
-              </button>
-            </div>
-            <div className={styles.formWrapper}>
-              {role == "SHIPPER" && (
-                <ShipperForm values={user} variant="profile" />
-              )}
-              {role == "COMPANY" && (
-                <CompanyForm values={user} variant="profile" />
-              )}
-              {role == "OPERATOR" && (
-                <OperatorForm values={user} variant="profile" />
-              )}
-            </div>
+      <div className={styles.conentWrapper}>
+        <div className={styles.userImage}>
+          <div className={styles.ImageWrapper}>
+            <Image
+              src={fileUrl || userImage}
+              alt="user"
+              objectFit="cover"
+              layout="responsive"
+              width={100}
+              height={100}
+            ></Image>
           </div>
+
+          <label className={styles.inputButton}>
+            <p>Change Photo</p>
+            <input type="file" onChange={changePhoto}></input>
+          </label>
+          <button onClick={LogOut} className={styles.logOutBtn}>
+            Log out
+          </button>
+        </div>
+        <div className={styles.formWrapper}>
+          {role == "SHIPPER" && <ShipperForm values={user} variant="profile" />}
+          {role == "COMPANY" && <CompanyForm values={user} variant="profile" />}
+          {role == "OPERATOR" && (
+            <OperatorForm values={user} variant="profile" />
+          )}
         </div>
       </div>
     </div>

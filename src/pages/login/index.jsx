@@ -4,10 +4,9 @@ import React from "react";
 const LoginPage = () => {
   return (
     <>
-      <LoginLayout/>
+      <LoginLayout />
     </>
   );
 };
 
 export default LoginPage;
-  
